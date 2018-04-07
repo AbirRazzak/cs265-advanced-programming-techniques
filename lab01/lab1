@@ -1,0 +1,23 @@
+2) Shows all the files in current directory with their permissions
+
+3) 644 - Read/Write to yourself, Read to group, Read to public
+
+4) 755 - Read/Write/Execute to yourself, Read/Execute to group, Read/Execute to public
+
+5) Yes, can read the funny file.
+
+6) Yes, can read the hello.bash file.
+
+7) No, does not execute
+
+8) Assign 1, 3, 5 or 7 to yourself.
+
+9) Cannot save, file is readonly. An error message is displayed.
+
+10) * - all files
+a* - files that start with a
+*m* - files that have an m in the name
+anno? - files that have "anno" followed by a random character
+annoy? - files that have "annoy" followed by a random character
+
+11) It created two files instead of a file with a space in the name
