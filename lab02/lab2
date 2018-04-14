@@ -1,0 +1,19 @@
+1) Outputs a list of files that have been modified in the last 2 days
+
+2) find -name '*.bash'
+
+3) ./gotMe.bash
+
+4) 97 Newlines, 499 Words, 2960 Bytes (Characters)
+
+5) grep the breadIsDangerous.txt | wc -l
+
+6) It spelled checked the file and made corrections
+
+7) Finds the difference between the current file, and how the file would look if accepted all spelling corrections
+
+8) Nothing was printed
+
+9) du * -h | sort -h -r | sed -n 1,8p
+
+10) 0 is returned when the grep was successful, 1 is returned if grep cannot find anything, 2 is returned if file cannot be found
