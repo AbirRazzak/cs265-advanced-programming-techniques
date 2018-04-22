@@ -11,9 +11,18 @@ if (( $# != 2 )) ; then
 	exit 2
 fi	
 
+#set a variable to check if any files are changed
+same=true
+
 for file in * ; do
 	if [[ -f "$file" && "$file" == *"$1" ]] ; then
 		f=${file/%"$1"/"$2"}
 		mv "$file" "$f"
+		same=false
 	fi
-done	
+done
+
+if [ "$same" == true ] ; then
+	echo "No files were changed. Check to see if your first argument is correct."
+	exit 1
+fi
