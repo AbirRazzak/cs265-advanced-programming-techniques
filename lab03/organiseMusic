@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# organiseMusic - organizes .mp3's to move all songs into folders named after Artist with file format {song name}.mp3
+#
+# Abir Razzak
+# 4/22/2018
+#
+#Linux tux3.cs.drexel.edu 4.4.0-116-generic #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC 2018 x86_64
+#
+
+for file in * ; do
+	if [[ -f "$file"  && "$file" == *.mp3 ]] ; then
+		Artist="$(echo "$file" | cut -d '-' -f 1)"
+		#trim off trailing whitespace
+		Artist="$(echo -e "$Artist" | sed -e 's/[[:space:]]*$//')"
+
+		Song="$(echo "$file" | cut -d '-' -f 2)"
+		#trim off leading whitespace
+		Song="$(echo -e "$Song" | sed -e 's/^[[:space:]]*//')"
+
+		#create directory if it doesn't exsist already
+		if [[ ! -d "$Artist" ]] ; then
+			mkdir "$Artist"
+		fi
+
+		mv "$file" "$Artist"/"$Song"
+	fi
+done

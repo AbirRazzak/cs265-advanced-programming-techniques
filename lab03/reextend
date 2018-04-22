@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# reextend - renames all regular files ending with the 1st param with the 2nd param
+#
+# Abir Razzak
+# 4/20/2018
+#
+# Linux tux4.cs.drexel.edu 4.4.0-96-generic #119-Ubuntu SMP Tue Sep 12 14:59:54 UTC 2017 x86_64
+if (( $# != 2 )) ; then
+	echo "You need to pass two arguments for this script to work."
+	exit 2
+fi	
+
+for file in * ; do
+	if [[ -f "$file" && "$file" == *"$1" ]] ; then
+		f=${file/%"$1"/"$2"}
+		mv "$file" "$f"
+	fi
+done	
