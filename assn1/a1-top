@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+# assign dir to current directory and change it to the first param if it a param is passed.
+var dir = "./"
+if (( "$#" == 1 )) ; then
+	if [[ -d $1 ]] ; then
+		dir = "$1"
+	else
+		echo "That's not a valid directory."
+		exit 1
+	fi
+fi
+if (( "$#" > 1 )) ; then
+	echo "That's too many params!"
+	exit 2
+fi
+
