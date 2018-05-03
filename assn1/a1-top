@@ -1,18 +1,104 @@
 #!/bin/bash
+#
+#a1-top - creates a dir.xml in a directory and all its subdirectories using information from an optional README in each directory
+#
+#Abir Razzak
+#May 1 2018
+#
+#Platform: Linux cci-uc15205.cci.drexel.edu 4.4.0-104-generic #127-Ubuntu SMP Mon Dec 11 12:16:42 UTC 2017 x86_64
+#
 
+#Global used to define the path of the source bash file
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# assign dir to current directory and change it to the first param if it a param is passed.
-var dir = "./"
-if (( "$#" == 1 )) ; then
-	if [[ -d $1 ]] ; then
-		dir = "$1"
+#Assign dir to current directory 
+#Change dir to the first param if it is a directory & only 1 param was passed
+dir='./'
+if (( "$#" == 1 )); then
+	if [[ -d $1 ]]; then
+		dir="$1"
 	else
 		echo "That's not a valid directory."
 		exit 1
 	fi
 fi
-if (( "$#" > 1 )) ; then
+if (( "$#" > 1 )); then
 	echo "That's too many params!"
 	exit 2
 fi
 
+#createXML - Creates the dir.xml in the directory
+#Uses param $1 for current directory
+createXML (){
+	#if dir.xml already exists, then delete it
+	if [[ -e "$1/dir.xml" ]]; then
+		rm "$1/dir.xml"
+	fi
+
+	#create the first two lines of the xml file
+	echo "<?xml version="1.0" encoding="ISO-8859-1"?>" >> "$1"/dir.xml; echo "<direntry>" >> "$1"/dir.xml
+
+	#If README exists then do the README awk functionalities
+	if [[ -e "$1/README" ]]; then
+		processREADME "$1"
+	fi
+
+	echo "  <other>" >> "$1"/dir.xml
+	#Checks all files, if directory then run the function recursively
+	#Additionally, check if file had been listed in dir.xml
+	#Add to dir.xml as other tag if not.
+	ls -1 $1 | while read file; do
+		#Search dir.xml for current file, if it can't find it or finds dir.xml then ignore it
+		grep -q ">$file<" "$1"/dir.xml
+		if [[ $? == 1 && $file != "dir.xml" ]]; then
+			#If file is a file
+			if [[ -f "$1/$file" ]]; then
+			echo "    <file>$file</file>" >> "$1"/dir.xml
+			fi
+
+			#If file is a directory
+			if [[ -d "$1/$file" ]]; then
+			echo "    <dir>$file</dir>" >> "$1"/dir.xml
+			createXML "$1/$file"
+			fi
+		fi
+	done
+	echo "  </other>" >> "$1"/dir.xml
+	echo "</direntry>" >> "$1"/dir.xml
+}
+
+#processREADME - runs awk scripts to read the README files
+#Uses param $1 for current directory
+processREADME (){
+	read entry1 entry2 <<< $(awk -f "$DIR"/checkReadMe.awk "$1"/README)
+	if [[ "$entry1" == "index" || "$entry2" == "index" ]]; then
+		#if there are index files in the README, then add each to the index tag
+		echo "  <index>" >> "$1"/dir.xml
+
+		read indexFiles <<< $(awk -f "$DIR"/readIndex.awk "$1"/README)
+		for fileName in $indexFiles ; do
+			echo "    <file>$fileName</file>" >> "$1"/dir.xml
+		done
+
+		echo "  </index>" >> "$1"/dir.xml
+	fi
+	if [[ "$entry1" == "required" || "$entry2" == "required" ]]; then
+		#if there are index files in the README, then add each to the index tag
+		echo "  <required>" >> "$1"/dir.xml
+
+		read requiredFiles <<< $(awk -f "$DIR"/readRequired.awk "$1"/README)
+		for fileName in $requiredFiles ; do
+			#echo "$fileName"
+			if [[ -f "$1/$fileName" ]]; then
+				echo "    <file>$fileName</file>" >> "$1"/dir.xml
+			fi
+			if [[ -d "$1/$fileName" ]]; then
+				echo "    <dir>$fileName</dir>" >> "$1"/dir.xml
+			fi
+		done
+
+		echo "  </required>" >> "$1"/dir.xml
+	fi
+}
+
+createXML $dir
