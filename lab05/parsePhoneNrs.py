@@ -85,7 +85,7 @@ def main():
 		[- .]*			# optional separator (any # of space, dash, or dot)
 		(\d{4})			# number, 4 digits
 		[- .x]*			# optional separator (any # of space, dash, or dot)
-		(\d{1,4})?			# number, 4 digits
+		(\d{1,4})?			# number, 1-4 digits optional
 		'''
 
 	# Here is what the pattern would look like as a regular pattern:
