@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import sys
 
-#file = open("/home/kschmidt/public_html/CS265/Labs/Python/ids", "r")
-file = open(sys.argv[1], "r")
+#f = sys.stdin
+
+file = open("/home/kschmidt/public_html/CS265/Labs/Python/ids", "r")
 dict = {}
 
 for line in file:

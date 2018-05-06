@@ -1,6 +1,9 @@
 #!/usr/bin/env python
+import sys
 
-file = open("/home/kschmidt/public_html/CS265/Labs/Python/students.csv", "r")
+#ile = open("/home/kschmidt/public_html/CS265/Labs/Python/students.csv", "r")
+file = open(sys.argv[1], "r")
+
 for line in file:
     l = line.strip('\n')
     w = l.split(',')
