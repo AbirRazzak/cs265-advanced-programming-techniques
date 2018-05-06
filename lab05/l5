@@ -1,0 +1,78 @@
+Python Styling Lab
+
+1-1) Typically the value of 0 is assigned to False and the value of 1 to be assigned to true. Also the variable 'not-eof' is very confusing. Instead try reversing the meaning behind the variable to is-eof or soemthing similar.
+
+1-2)
+char smaller(char *s, char *t){
+	if (strcmp(s,t) < 1){
+		return s;
+	}
+	else{
+		return t;
+	}
+}
+
+1-4)
+if( c!='y' || c!='Y')
+	return
+
+if(length >= BUFSIZE)
+	length = BUFSIZE
+
+flag = 0
+
+if(*line == '"')
+	quote = 1
+else
+	quote = 0
+
+if(val == 0)
+	bit = 0;
+else
+	bit = 1;
+
+1-5)
+No need to be returning pointers as pointers are automatically assigned when changed
+
+1-6)
+Evaluated left-to-right: 1 2
+Evaluated right-to-left: 2 1
+Stored in memory after: 1 1
+
+1-7)
+if(istty(stdin) && istty(stdout) && istty(stderr))
+	return(0);
+
+return retval;
+
+for (k = 0; k < 5; k++) {
+    scanf("%lf", &dx);
+    x += dx;
+}
+k++;
+
+1-8)
+for (int i = 0; i < total; i++) {
+    if (this.getName(i) == nameTable.userName()) {
+        return true;
+    }
+}
+
+1-9)
+#define ISDIGIT(c) ((c) >= '0' && (c) <= '9')
+
+1-10)
+static const double FTTOMETER = 0.3048;
+static const double METERTOFT = 3.28084;
+static const double MITOFT = 5280.0;
+static const double MITOKM = 1.609344;
+static const double SQMITOSQKM = 2.589988;
+
+enums aren't nessessary here.
+
+1-11)
+Comment #1, claims a void function is returning something
+Comment #2 is completely wrong, doesnt even check for even numbers, and no mention about MAX either
+Comment #3 does not mention the name of the function so it seems random at first
+Comment #4 not needed due to comment #5
+Comment #5 and #6 is not needed, pretty obvious whats going on
