@@ -1,0 +1,54 @@
+1.
+i) List - A sequence of elements all linked together by pointers
+ii) Stack - List of elements that are inserted/removed using the LIFO (last in first out) methodology
+iii) Queue - List of elements that are inserted/removed using the FIFO (first in first out) methodology
+iv) Dictionary (Map) - A set of key, value pairs
+
+2.
+log2(n) times, Binary search splits a sorted list in half until it finds the value
+
+3.
+n times, Linear search will check every value in the order they appear in the list until the value is found, if the value is at the end of the list then it will take n number of times.
+
+4.
+Linear Search > Binary search when the list is not sorted, since Binary search depends on the list being sorted already.
+
+5.
+*84* 37 93 82 98 27 63 73 93 27 75 55 45 8
+37 82 27 63 73 27 75 55 45 8 *84* 93 98 93 
+*37* 82 27 63 73 27 75 55 45 8 84 *93* 98 93 
+27 27 8 *37* 82 63 73 75 55 45 84 *93* 98 93 
+*27* 27 8 37 *82* 63 73 75 55 45 84 93 *98* 93 
+8 *27* 27 37 63 73 75 55 45 *82* 84 93 93 *98* 
+8 27 27 37 *63* 73 75 55 45 82 84 93 93 98 
+8 27 27 37 55 45 *63* 73 75 82 84 93 93 98 
+8 27 27 37 *55* 45 63 *73* 75 82 84 93 93 98 
+8 27 27 37 45 55 63 *73* 75 82 84 93 93 98 
+8 27 27 37 45 55 63 73 *75* 82 84 93 93 98 
+8 27 27 37 45 55 63 73 75 82 84 93 93 98 
+
+6.
+[3, 24, 06]
+
+7.
+[13, [28, [24, [3, None ] ] ] ]
+
+8.
+s is not pointing at the buffer, so when s changes, the buffer does not, causing the output to be 2 different things
+
+9.
+3 -> [Bob,38]->[Cos,86]
+4 -> [Vera,99]->[Nash,11]->[Kate,28]->[Jaga,24]
+5 -> [Jesse,78]
+
+10.
+int find( char *key, int *p_ans ){
+	while(key != NULL){
+		if(*key == *p_ans)
+		{
+			return 1;
+		}
+		key = key->next;
+	}
+	return 0;
+}
