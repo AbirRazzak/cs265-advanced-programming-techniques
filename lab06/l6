@@ -43,7 +43,8 @@ s is not pointing at the buffer, so when s changes, the buffer does not, causing
 
 10.
 int find( char *key, int *p_ans ){
-	while(key != NULL){
+	while(key != NULL)
+	{
 		if(*key == *p_ans)
 		{
 			return 1;
