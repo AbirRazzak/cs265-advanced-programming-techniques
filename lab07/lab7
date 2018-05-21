@@ -1,0 +1,35 @@
+1) add() can add a prefix and suffix addSuffix() adds a new suffix
+2) lookup() searches for a prefix, or makes one if it can't be found. generate() & add() use lookup()
+3)
+(null) (null) | It's
+(null) It's   | a
+It's   a      | new
+a      new    | dawn
+new    dawn   | (null)
+
+a. 3
+b. 3
+c. 3
+d. 2
+
+4) Uses less memory
+5) Have to free memory after program ends
+6)
+void cleanup(State *statetab){
+	while(statetab != null){
+		free(statetab);
+		statetab = statetab->next;
+	}
+}
+7) Yeah
+8) Save the location as a value in a pointer, and check the pointer after the memory is freed and see if the value changes
+9) Prefixes are stored in a deque. Deques can insert at the front and back efficently compared to vectors
+10) A map
+11) Vectors as suffixes
+12) Less pointers
+13) Memory allocation usually makes it slower
+14) Tuples
+15) Dictionary
+16) List object
+17) No pointers!
+18) No pointers - everything is stored as an object
