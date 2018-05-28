@@ -1,0 +1,20 @@
+1.
+	i. A good interface should hide implementation details from users so that they can change without affecting the users
+	ii. Non-overlapping functions that carry out a specific task very well
+	iii. Users should be controlling the program and nothing more that the user did not ask it to do
+	iv. Have a consistant look and feel for your interface
+
+2.
+	Error handling is not implemented. All test cases like empty fields and commas within quotations are not looked at.
+
+3.
+	Commas within quotes are handled, and escaped quotes are also handled.
+
+4.
+	As stated in #2, the program still doesn't look for empty fields. Nope - the files are processed through stdin, so only 1 file can be processed at a time.
+
+5.
+	Cpp version still does not handle empty fields.
+
+6.
+	Yes
