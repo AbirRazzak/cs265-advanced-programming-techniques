@@ -1,0 +1,10 @@
+1) It gave me an error. There's a new file called bug3. Also modifies a file called core.
+
+2) #1  0x00000000004009ad in inTable ()
+#2 0x0000000000400920 in main ()
+
+3) 
+
+4) The complier doesn't catch this because it's not a syntax error, the user didn't put brackets so it only looped the line after.
+
+5) It'll cause an error
