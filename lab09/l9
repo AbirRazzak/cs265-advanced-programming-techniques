@@ -4,6 +4,10 @@
 #2 0x0000000000400920 in main ()
 
 3) 
+	a) expecting 'int *' but got 'int'. Changed n to &n
+	b) expecting 'int' but got 'double' for %d and expecting 'double' but got 'int' for %f. Fixed it by swapping %d and %f.
+	c) segmentation fault. Moved ++numLines down one line.
+	d) same as a
 
 4) The complier doesn't catch this because it's not a syntax error, the user didn't put brackets so it only looped the line after.
 
