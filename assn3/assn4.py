@@ -9,11 +9,12 @@ import sys
 
 class Register:
     '''Simulates a cash register'''
-    #Global variables
+    #Class variables
     ONES_VALUE = 1
     FIVES_VALUE = 5
     TENS_VALUE = 10
     TWENTIES_VALUE = 20
+    FILE_NAME = "Register.tmp"
 
     def __init__ (self, amt, ones, fives=0, tens=0, twenties=0) :
         try:
@@ -34,3 +35,6 @@ class Register:
         checkTotal = (self.ones * Register.ONES_VALUE) + (self.fives * Register.FIVES_VALUE) + (self.tens * Register.TENS_VALUE) + (self.twenties * Register.TWENTIES_VALUE)
         if(checkTotal != self.total) :
             sys.exit(2)
+
+    def purchase (amt, ones, fives=0, tens=0, twenties=0) :
+        pass

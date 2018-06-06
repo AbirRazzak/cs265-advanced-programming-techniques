@@ -12,6 +12,10 @@ from assn4 import Register
 
 class RegisterTests(unittest.TestCase) :
     '''Tests for Register class'''
+
+    def setUp(self):
+        self.x = Register(200, 20, 4, 6, 5)
+
     def test_init_norm(self) :
         '''Test a normal case of initializing'''
         '''Test a normal case of initializing with only 1's'''
@@ -59,6 +63,28 @@ class RegisterTests(unittest.TestCase) :
         with self.assertRaises(SystemExit) as cm :
             Register(52, 2, 0, 1)
         self.assertEqual(cm.exception.code, 2)
+
+    def test_purchase_read(self):
+        '''Test if purchase handles not finding data file'''
+        '''with self.assertRaises(SystemExit) as cm :
+            self.x.FILE_NAME = "gibberish"
+            self.x.purchase(1, 1)
+        self.assertEqual(cm.exception.code, 4)'''
+        pass
+
+    def test_purchase_badargs(self) :
+        '''Test bad arguments for purchase method'''
+        '''Test for negative ints'''
+        '''Test for non-ints'''
+        pass
+
+    def test_purchase_jibe(self) :
+        '''Test to see if args don't jibe with amount for purchase function'''
+        pass
+    
+    def test_purchase_notEnoughChange(self) :
+        '''Test to check if program catches when there is not enough change in the drawer to refund in the puchase function'''
+        pass
 
 if __name__ == '__main__' :
    sys.argv.append( '-v' )
