@@ -11,4 +11,4 @@ view :
 
 clean :
 		@\rm *.pyc
-		@\rm -r __pycashe__
+		@\rm -r __pycache__

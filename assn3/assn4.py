@@ -225,12 +225,37 @@ class Register:
         '''Returns the monetary value of the bills'''
         return (ones * self.ONES_VALUE) + (fives * self.FIVES_VALUE) + (tens * self.TENS_VALUE) + (twenties * self.TWENTIES_VALUE)
 
-def test():
-    x = Register(200, 20, 4, 6, 5)
-    x.report()
-    x.purchase(18, 0, 0, 0, 1)
-    x.report()
-    x.change("10 = 0 2")
-    x.report()
+def main(args):
+    args_length = len(sys.argv)
+    if args_length < 2:
+        print('Forgot your arguments?')
+    
+    a = list(sys.argv)
+    a.pop(0) #pops off assn4
+    cmd = a.pop(0) #pops off command being called
 
-test()
+    if (cmd == 'report'):
+            Register.report()
+    else :
+        if (cmd == 'change') :
+            expression = ""
+            for i in range(len(a)) :
+                expression += str.format('{0} ', a[i])
+
+            return Register.change(expression)
+
+        try:
+            a.pop('=') #Take out the equal
+            while len(a) < 5 :
+                a.append(0) #Add 0's if they are not included
+            except :
+                sys.exit(1)
+
+        if (cmd == 'init') :
+            return Register(a[0], a[1], a[2], a[3], a[4])
+
+        if (cmd == 'purchase') :
+            return Register.purchase(a[0], a[1], a[2], a[3], a[4])
+
+if __name__ == '__main__' :
+        sys.exit( main( sys.argv ))
