@@ -18,7 +18,7 @@ def init (amt, ones, fives=0, tens=0, twenties=0) :
         TENS = int(tens)
         TWENTIES = int(twenties)
         '''Exit with code 1 if any of the args are negative'''
-        if(amt < 0 or ones < 0 or fives < 0 or tens < 0 or twenties < 0) :
+        if(TOTAL < 0 or ONES < 0 or FIVES < 0 or TENS < 0 or TWENTIES < 0) :
             raise ValueError('Negative number was entered')
     except ValueError:
         '''String that is passed in does not represent an integer'''
