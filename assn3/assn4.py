@@ -6,6 +6,7 @@
 #
 
 import sys
+import json
 
 class Register:
     '''Simulates a cash register'''
@@ -26,7 +27,7 @@ class Register:
             self.twenties = int(twenties)
             '''Exit with code 1 if any of the args are negative'''
             if(amt < 0 or ones < 0 or fives < 0 or tens < 0 or twenties < 0) :
-                sys.exit(1)
+                raise ValueError('Negative number was entered')
         except ValueError:
             '''String that is passed in does not represent an integer'''
             sys.exit(1)
@@ -36,5 +37,27 @@ class Register:
         if(checkTotal != self.total) :
             sys.exit(2)
 
+        '''Now make the file that holds the values'''
+        data = {}
+        data['sales'] = self.sales
+        data['total'] = self.total
+        data['ones'] = self.ones
+        data['fives'] = self.fives
+        data['tens'] = self.tens
+        data['twenties'] = self.twenties
+
+        with open('register.json', 'w') as outfile :
+            json.dump(data, outfile)
+
     def purchase (amt, ones, fives=0, tens=0, twenties=0) :
-        pass
+        try:
+            a = int(amt)
+            o = int(ones)
+            f= int(fives)
+            t = int(tens)
+            tw = int(twenties)
+            if(a < 0 or o < 0 or f < 0 or t < 0 or tw < 0) :
+                raise ValueError('Negative number was entered')
+        except ValueError:
+            '''String that is passed in does not represent an integer'''
+            sys.exit(1)
