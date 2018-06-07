@@ -22,19 +22,19 @@ class RegisterTests(unittest.TestCase) :
         '''Test a normal case of initializing'''
         '''Test a normal case of initializing with only 1's'''
         test = Register(5, 5)
-        self.assertEqual(test.total, 5)
+        self.assertEqual(test.TOTAL, 5)
 
         '''Test a normal case of initializing with 1's & 5's'''
         test = Register(10, 5, 1)
-        self.assertEqual(test.total, 10)
+        self.assertEqual(test.TOTAL, 10)
 
         '''Test a normal case of initializing with 1's, 5's, & 10's'''
         test = Register(52, 2, 0, 5)
-        self.assertEqual(test.total, 52)
+        self.assertEqual(test.TOTAL, 52)
 
         '''Test a normal case of initializing with 1's, 5's, 10's & 20's'''
         test = Register(42, 2, 2, 1, 1)
-        self.assertEqual(test.total, 42)
+        self.assertEqual(test.TOTAL, 42)
 
         '''Test if file was written correctly'''
         self.setUp()
@@ -116,18 +116,26 @@ class RegisterTests(unittest.TestCase) :
     def test_purchase_jibe(self) :
         '''Test to see if args don't jibe with amount for purchase()'''
         with self.assertRaises(SystemExit) as cm :
-            self.x.purchase(100, 100, 2, 2, 3)
+            y = Register(50, 0, 0, 1, 2)
+            self.x.purchase(30, 0, 0, 0, 1)
         self.assertEqual(cm.exception.code, 2)
     
     def test_purchase_notEnoughChange(self) :
         '''Test to check if program catches when there is not enough change in the drawer to refund in the puchase function'''
         with self.assertRaises(SystemExit) as cm :
-            self.x.purchase(450, 100, 2, 2, 3)
+            test = Register(1, 1)
+            test.purchase(18, 0, 0, 0, 1)
         self.assertEqual(cm.exception.code, 3)
 
     def test_purchase(self) :
         '''Test if purchase is properly running'''
-        pass
+        self.setUp()
+        result = self.x.purchase(18, 0, 0, 0, 1)
+        self.assertEqual(result, "2 0 0 0")
+        '''If customer gives unnessesary change (ex. an extra 1)'''
+        self.setUp()
+        result = self.x.purchase(18, 1, 0, 0, 1)
+        self.assertEqual(result, "3 0 0 0")
 
 if __name__ == '__main__' :
    sys.argv.append( '-v' )
