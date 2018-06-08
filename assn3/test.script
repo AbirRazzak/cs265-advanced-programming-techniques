@@ -1,0 +1,144 @@
+#!/bin/bash
+
+echo "Testing init..."
+
+echo "Expected: error code 0"
+./assn4.py init 200 = 20 4 6 5
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 0"
+./assn4.py init 20 = 20
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 0"
+./assn4.py init 40 = 20 4
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 0"
+./assn4.py init 100 = 20 4 6
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py init 20 = -20
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py init 40 = 20 -4
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py init 100 = 20 4 -6
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py init 200 = 20 4 6 -5
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py init 200 = hi 4 6 5
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 2"
+./assn4.py init 100 = 20 4 6 5
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo ""
+echo "Testing Purchase..."
+
+echo "Expected: error code 0"
+echo "Expecting output: 2 0 0 0"
+./assn4.py purchase 18 = 0 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py purchase -18 = 0 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py purchase 18 = -1 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py purchase 18 = 0 -1 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py purchase 18 = 0 0 -1 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py purchase 18 = 0 0 0 -1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py purchase 18 = kurt 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 2"
+./assn4.py init 50 = 0 0 1 2
+./assn4.py purchase 30 = 0 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 3"
+./assn4.py init 1 = 1
+./assn4.py purchase 18 = 0 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo ""
+echo "Testing change..."
+
+echo "Expected: error code 0"
+echo "Expecting output: 0 0 1 0"
+./assn4.py init 200 = 20 4 6 5
+./assn4.py change 0 2 = 0 0 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 1"
+./assn4.py init 200 = 20 4 6 5
+./assn4.py change 0 2 = 0 hi 1
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 2"
+./assn4.py init 200 = 20 4 6 5
+./assn4.py change 0 3 = 0 0 2
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo "Expected: error code 3"
+./assn4.py init 200 = 20 4 6 5
+./assn4.py change 0 0 3 = 5 5
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
+echo ""
+echo "Testing report..."
+
+echo "Expected: error code 0"
+echo "Expecting output: 18 : 218 = 18 4 6 6"
+./assn4.py init 200 = 20 4 6 5
+./assn4.py purchase 18 = 0 0 0 1 >/dev/null
+./assn4.py report
+error_code=$(echo $?)
+echo "Got error code "$error_code
+
